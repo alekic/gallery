@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react-native';
-import { SignInScreenProps } from '../navigation/types';
+import { SignInScreenProps } from '@navigation/types';
 import SignInScreen from './SignInScreen';
 
 const navigation = { navigate: jest.fn() } as Partial<

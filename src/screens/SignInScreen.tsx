@@ -1,6 +1,6 @@
 import { Button, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { RootStackScreenProps } from '../navigation/types';
+import { RootStackScreenProps } from '@navigation/types';
 
 export default function SignInScreen({
   navigation

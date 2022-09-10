@@ -38,6 +38,7 @@
     "@types/react-native": "~0.66.13",
     "@typescript-eslint/eslint-plugin": "^5.33.1",
     "@typescript-eslint/parser": "^5.33.1",
+    "babel-plugin-module-resolver": "^4.1.0",
     "eslint": "^8.22.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
@@ -70,7 +71,11 @@
       "!**/node_modules/**",
       "!**/babel.config.js",
       "!**/jest.setup.js"
-    ]
+    ],
+    "moduleNameMapper": {
+      "^@navigation(.*)$": "<rootDir>/src/navigation$1",
+      "^@screens(.*)$": "<rootDir>/src/screens$1"
+    }
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --cache --fix ."
