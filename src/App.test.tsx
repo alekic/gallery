@@ -1,10 +1,8 @@
 import { render, screen } from '@testing-library/react-native';
 import App from './App';
 
-test('renders welcome message', () => {
+test('initially renders sign in screen', () => {
   render(<App />);
 
-  expect(
-    screen.getByText(/Open up App.tsx to start working on your app!/i)
-  ).toBeDefined();
+  expect(screen.getByText(/sign in/i)).toBeDefined();
 });
