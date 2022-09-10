@@ -1,24 +1,23 @@
-import { Button, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { Screen } from '@components';
 import { RootStackScreenProps } from '@navigation/types';
+import { Button, Image, VStack } from 'native-base';
 
 export default function SignInScreen({
   navigation
 }: RootStackScreenProps<'SignIn'>) {
   return (
-    <SafeAreaView style={styles.container}>
-      <Button
-        onPress={() => navigation.navigate('Home')}
-        title="Sign In"
-      />
-    </SafeAreaView>
+    <Screen centerContent>
+      <VStack
+        flex={0.5}
+        justifyContent="center"
+      >
+        <Image
+          alt="Gallery"
+          size="lg"
+          source={require('../../assets/icon.png')}
+        />
+      </VStack>
+      <Button onPress={() => navigation.navigate('Home')}>Sign In</Button>
+    </Screen>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center'
-  }
-});

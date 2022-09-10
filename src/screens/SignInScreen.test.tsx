@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react-native';
+import { fireEvent, render, screen } from '@test-utils';
 import { SignInScreenProps } from '@navigation/types';
 import SignInScreen from './SignInScreen';
 

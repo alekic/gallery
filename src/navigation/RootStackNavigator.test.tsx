@@ -1,11 +1,8 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { fireEvent, render, screen } from '@testing-library/react-native';
+import { fireEvent, render, screen } from '@test-utils';
 import RootStackNavigator from './RootStackNavigator';
 
 beforeEach(() => {
-  render(<RootStackNavigator />, {
-    wrapper: NavigationContainer
-  });
+  render(<RootStackNavigator />);
 });
 
 test('initially renders sign in screen', () => {

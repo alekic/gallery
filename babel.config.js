@@ -7,8 +7,10 @@ module.exports = function (api) {
         'module-resolver',
         {
           alias: {
+            '^@components(.*)$': './src/components\\1',
             '^@navigation(.*)$': './src/navigation\\1',
-            '^@screens(.*)$': './src/screens\\1'
+            '^@screens(.*)$': './src/screens\\1',
+            '^@test-utils$': './src/utils/test-utils'
           }
         }
       ]
