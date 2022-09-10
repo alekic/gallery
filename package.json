@@ -11,7 +11,9 @@
     "test": "jest --coverage=false",
     "testCoverage": "jest",
     "testWatch": "jest --watch --coverage=false",
-    "updateSnapshots": "jest -u --coverage=false"
+    "updateSnapshots": "jest -u --coverage=false",
+    "lint": "eslint --fix .",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@expo/webpack-config": "^0.17.0",
@@ -29,10 +31,18 @@
     "@types/jest": "^28.1.7",
     "@types/react": "~17.0.21",
     "@types/react-native": "~0.66.13",
+    "@typescript-eslint/eslint-plugin": "^5.33.1",
+    "@typescript-eslint/parser": "^5.33.1",
+    "eslint": "^8.22.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.1",
     "jest": "^26.6.3",
     "jest-expo": "^46.0.1",
+    "lint-staged": "^13.0.3",
     "patch-package": "^6.4.7",
     "postinstall-postinstall": "^2.1.0",
+    "prettier": "^2.7.1",
     "react-test-renderer": "17.0.2",
     "typescript": "~4.3.5"
   },
@@ -53,5 +63,8 @@
       "!**/babel.config.js",
       "!**/jest.setup.js"
     ]
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "eslint --cache --fix ."
   }
 }
