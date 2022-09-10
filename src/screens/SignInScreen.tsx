@@ -1,4 +1,5 @@
 import { Screen } from '@components';
+import i18n from '@i18n';
 import { RootStackScreenProps } from '@navigation/types';
 import { Button, Image, useColorMode, VStack } from 'native-base';
 
@@ -18,13 +19,15 @@ export default function SignInScreen({
         justifyContent="center"
       >
         <Image
-          alt="Gallery"
+          alt={i18n.t('Gallery')}
           key={source}
           size="lg"
           source={source}
         />
       </VStack>
-      <Button onPress={() => navigation.navigate('Root')}>Sign In</Button>
+      <Button onPress={() => navigation.navigate('Root')}>
+        {i18n.t('Sign in')}
+      </Button>
     </Screen>
   );
 }

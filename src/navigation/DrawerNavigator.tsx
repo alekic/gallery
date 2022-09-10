@@ -1,4 +1,5 @@
 import { Icon } from '@components';
+import i18n from '@i18n';
 import {
   createDrawerNavigator,
   DrawerContentComponentProps,
@@ -32,7 +33,7 @@ export default function DrawerNavigator() {
         component={HomeScreen}
         options={{
           drawerIcon: getDrawerIcon('home'),
-          title: 'Home'
+          title: i18n.t('Home')
         }}
       />
     </Drawer.Navigator>
@@ -48,12 +49,12 @@ function CustomDrawerContent(props: DrawerContentComponentProps) {
     >
       <DrawerItemList {...props} />
       <DrawerItem
-        label="Help"
+        label={i18n.t('Help')}
         onPress={() => Linking.openURL('https://docs.expo.io/')}
         icon={getDrawerIcon('help-circle')}
       />
       <DrawerItem
-        label="Sign out"
+        label={i18n.t('Sign out')}
         onPress={() => props.navigation.navigate('SignIn')}
         icon={getDrawerIcon('exit')}
       />

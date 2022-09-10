@@ -4,6 +4,11 @@ import { View as MockIcon } from 'react-native';
 import { setUpTests } from 'react-native-reanimated/lib/reanimated2/jestUtils';
 import mockSafeAreaContext from 'react-native-safe-area-context/jest/mock';
 
+jest.mock('expo-localization', () => ({
+  ...jest.requireActual('expo-localization'),
+  locale: 'en-US'
+}));
+
 jest.mock('native-base', () => ({
   ...jest.requireActual('native-base'),
   Icon: MockIcon

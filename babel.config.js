@@ -8,6 +8,7 @@ module.exports = function (api) {
         {
           alias: {
             '^@components(.*)$': './src/components\\1',
+            '^@i18n(.*)$': './src/i18n\\1',
             '^@navigation(.*)$': './src/navigation\\1',
             '^@screens(.*)$': './src/screens\\1',
             '^@test-utils$': './src/utils/test-utils',

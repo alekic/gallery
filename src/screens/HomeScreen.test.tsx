@@ -4,5 +4,5 @@ import HomeScreen from './HomeScreen';
 test('renders correctly', () => {
   render(<HomeScreen />);
 
-  expect(screen.getByText(/home screen/i)).toBeDefined();
+  expect(screen.getByText(/home/i)).toBeDefined();
 });

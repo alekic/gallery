@@ -1,3 +1,4 @@
+import i18n from '@i18n';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SignInScreen } from '@screens';
 import DrawerNavigator from './DrawerNavigator';
@@ -12,7 +13,7 @@ export default function RootStackNavigator() {
         name="SignIn"
         component={SignInScreen}
         options={{
-          title: 'Sign In',
+          title: i18n.t('Sign in'),
           headerShown: false
         }}
       />
