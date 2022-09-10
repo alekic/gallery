@@ -8,7 +8,8 @@
       "@navigation": ["./navigation"],
       "@navigation/*": ["./navigation/*"],
       "@screens": ["./screens"],
-      "@test-utils": ["./utils/test-utils"]
+      "@test-utils": ["./utils/test-utils"],
+      "@theme": ["./theme"]
     }
   }
 }

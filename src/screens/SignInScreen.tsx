@@ -1,10 +1,16 @@
 import { Screen } from '@components';
 import { RootStackScreenProps } from '@navigation/types';
-import { Button, Image, VStack } from 'native-base';
+import { Button, Image, useColorMode, VStack } from 'native-base';
 
 export default function SignInScreen({
   navigation
 }: RootStackScreenProps<'SignIn'>) {
+  const { colorMode } = useColorMode();
+  const source =
+    colorMode === 'dark'
+      ? require('../../assets/icon-dark.png')
+      : require('../../assets/icon-light.png');
+
   return (
     <Screen centerContent>
       <VStack
@@ -13,8 +19,9 @@ export default function SignInScreen({
       >
         <Image
           alt="Gallery"
+          key={source}
           size="lg"
-          source={require('../../assets/icon.png')}
+          source={source}
         />
       </VStack>
       <Button onPress={() => navigation.navigate('Home')}>Sign In</Button>

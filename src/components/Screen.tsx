@@ -8,7 +8,6 @@ type Props = IBoxProps & {
 export default function Screen({ centerContent, ...rest }: Props) {
   return (
     <Box
-      background="white"
       style={centerContent && styles.centerContent}
       {...rest}
     />
