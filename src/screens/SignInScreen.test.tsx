@@ -22,5 +22,5 @@ test('renders sign in button', () => {
 test('navigates to home screen when sign in button is pressed', () => {
   fireEvent.press(screen.getByText(/sign in/i));
 
-  expect(navigation.navigate).toBeCalledWith('Home');
+  expect(navigation.navigate).toBeCalledWith('Root');
 });

@@ -12,5 +12,5 @@ test('initially renders sign in screen', () => {
 test('navigates to home screen when sign in button is pressed', () => {
   fireEvent.press(screen.getByText(/sign in/i));
 
-  expect(screen.getByText(/home/i)).toBeDefined();
+  expect(screen.getAllByText(/home/i)).toBeDefined();
 });

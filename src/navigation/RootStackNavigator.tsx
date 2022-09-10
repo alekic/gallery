@@ -1,5 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { HomeScreen, SignInScreen } from '@screens';
+import { SignInScreen } from '@screens';
+import DrawerNavigator from './DrawerNavigator';
 import { RootStackParamList } from './types';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -16,10 +17,10 @@ export default function RootStackNavigator() {
         }}
       />
       <Stack.Screen
-        name="Home"
-        component={HomeScreen}
+        name="Root"
+        component={DrawerNavigator}
         options={{
-          title: 'Home'
+          headerShown: false
         }}
       />
     </Stack.Navigator>

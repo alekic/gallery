@@ -24,7 +24,7 @@ export default function SignInScreen({
           source={source}
         />
       </VStack>
-      <Button onPress={() => navigation.navigate('Home')}>Sign In</Button>
+      <Button onPress={() => navigation.navigate('Root')}>Sign In</Button>
     </Screen>
   );
 }
