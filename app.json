@@ -1,11 +1,13 @@
 {
   "expo": {
-    "name": "gallery",
+    "name": "Gallery",
     "slug": "gallery",
     "version": "1.0.0",
-    "orientation": "portrait",
+    "owner": "aleksandar.lekic",
+    "orientation": "default",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "entryPoint": "./src/App.tsx",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
