@@ -1,16 +1,16 @@
-import { fireEvent, render, screen } from '@test-utils';
+import { render, screen } from '@test-utils';
 import RootStackNavigator from './RootStackNavigator';
 
-beforeEach(() => {
+test('renders sign in screen when user is not authenticated', () => {
   render(<RootStackNavigator />);
-});
 
-test('initially renders sign in screen', () => {
   expect(screen.getByText(/sign in/i)).toBeDefined();
 });
 
-test('navigates to home screen when sign in button is pressed', () => {
-  fireEvent.press(screen.getByText(/sign in/i));
+test('renders home screen when user is authenticated', () => {
+  render(<RootStackNavigator />, {
+    authProviderProps: { token: 'secret' }
+  });
 
   expect(screen.getAllByText(/home/i)).toBeDefined();
 });

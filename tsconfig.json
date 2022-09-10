@@ -4,6 +4,7 @@
     "strict": true,
     "baseUrl": "src",
     "paths": {
+      "@auth": ["./auth"],
       "@components": ["./components"],
       "@i18n": ["./i18n"],
       "@navigation": ["./navigation"],

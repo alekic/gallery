@@ -1,3 +1,4 @@
+import { useAuth } from '@auth';
 import { Icon } from '@components';
 import i18n from '@i18n';
 import {
@@ -41,6 +42,8 @@ export default function DrawerNavigator() {
 }
 
 function CustomDrawerContent(props: DrawerContentComponentProps) {
+  const { signOut } = useAuth();
+
   return (
     <DrawerContentScrollView
       accessibilityRole="menu"
@@ -55,7 +58,7 @@ function CustomDrawerContent(props: DrawerContentComponentProps) {
       />
       <DrawerItem
         label={i18n.t('Sign out')}
-        onPress={() => props.navigation.navigate('SignIn')}
+        onPress={signOut}
         icon={getDrawerIcon('exit')}
       />
     </DrawerContentScrollView>

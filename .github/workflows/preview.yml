@@ -34,6 +34,8 @@ jobs:
 
       - name: 🚀 Publish preview
         run: expo publish --release-channel=pr-${{ github.event.number }} --non-interactive
+        env:
+          EXPO_CLIENT_ID: ${{ secrets.EXPO_CLIENT_ID }}
 
       - name: 💬 Comment preview
         uses: expo/expo-github-action/preview-comment@v7

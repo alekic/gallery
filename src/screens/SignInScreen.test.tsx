@@ -1,26 +1,28 @@
 import { fireEvent, render, screen } from '@test-utils';
-import { SignInScreenProps } from '@navigation/types';
 import SignInScreen from './SignInScreen';
 
-const navigation = { navigate: jest.fn() } as Partial<
-  SignInScreenProps['navigation']
->;
-
-beforeEach(() => {
-  render(
-    <SignInScreen
-      navigation={navigation as SignInScreenProps['navigation']}
-      route={{} as SignInScreenProps['route']}
-    />
-  );
-});
-
 test('renders sign in button', () => {
+  render(<SignInScreen />);
+
   expect(screen.getByText(/sign in/i)).toBeDefined();
 });
 
-test('navigates to home screen when sign in button is pressed', () => {
+test('signs in when sign in button is pressed', () => {
+  const signIn = jest.fn();
+
+  render(<SignInScreen />, {
+    authProviderProps: { signIn }
+  });
+
   fireEvent.press(screen.getByText(/sign in/i));
 
-  expect(navigation.navigate).toBeCalledWith('Root');
+  expect(signIn).toBeCalled();
+});
+
+test('renders loading text when signing in', () => {
+  render(<SignInScreen />, {
+    authProviderProps: { isSigningIn: true }
+  });
+
+  expect(screen.getByText(/signing in/i)).toBeDefined();
 });

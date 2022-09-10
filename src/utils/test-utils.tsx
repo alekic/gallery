@@ -1,15 +1,36 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { AuthContext, AuthContextProps } from '@auth';
 import { NavigationContainer } from '@react-navigation/native';
 import { render } from '@testing-library/react-native';
 import { NativeBaseProvider } from 'native-base';
 import type { PropsWithChildren, ReactElement } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-function Providers({ children }: PropsWithChildren<unknown>) {
+const defaultAuthProviderProps: AuthContextProps = {
+  isLoading: false,
+  isSigningIn: false,
+  isSigningOut: false,
+  signIn: jest.fn(),
+  signOut: jest.fn(),
+  token: null
+};
+
+type ProvidersProps = PropsWithChildren<{
+  authProviderProps?: Partial<AuthContextProps>;
+}>;
+
+function Providers({ authProviderProps = {}, children }: ProvidersProps) {
   return (
     <NativeBaseProvider>
       <SafeAreaProvider>
-        <NavigationContainer>{children}</NavigationContainer>
+        <AuthContext.Provider
+          value={{
+            ...defaultAuthProviderProps,
+            ...authProviderProps
+          }}
+        >
+          <NavigationContainer>{children}</NavigationContainer>
+        </AuthContext.Provider>
       </SafeAreaProvider>
     </NativeBaseProvider>
   );
@@ -20,9 +41,15 @@ type RenderOptions = {
   createNodeMock?: (element: React.ReactElement) => any;
 };
 
-function customRender(component: ReactElement, options?: RenderOptions) {
+type CustomRenderOptions = RenderOptions & Partial<ProvidersProps>;
+
+function customRender(component: ReactElement, options?: CustomRenderOptions) {
   return render(component, {
-    wrapper: Providers,
+    wrapper: ({ children }) => (
+      <Providers authProviderProps={options?.authProviderProps}>
+        {children}
+      </Providers>
+    ),
     ...options
   });
 }

@@ -7,6 +7,7 @@ module.exports = function (api) {
         'module-resolver',
         {
           alias: {
+            '^@auth(.*)$': './src/auth\\1',
             '^@components(.*)$': './src/components\\1',
             '^@i18n(.*)$': './src/i18n\\1',
             '^@navigation(.*)$': './src/navigation\\1',

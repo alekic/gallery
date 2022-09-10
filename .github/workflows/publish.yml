@@ -1,4 +1,4 @@
-# This workflow publishes the app on the default channel 
+# This workflow publishes the app on the default channel
 # on every push to the master branch.
 
 name: Publish
@@ -37,3 +37,5 @@ jobs:
 
       - name: 🚀 Publish app
         run: expo publish --non-interactive
+        env:
+          EXPO_CLIENT_ID: ${{ secrets.EXPO_CLIENT_ID }}

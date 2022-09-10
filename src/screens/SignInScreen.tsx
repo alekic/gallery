@@ -1,11 +1,10 @@
+import { useAuth } from '@auth';
 import { Screen } from '@components';
 import i18n from '@i18n';
-import { RootStackScreenProps } from '@navigation/types';
 import { Button, Image, useColorMode, VStack } from 'native-base';
 
-export default function SignInScreen({
-  navigation
-}: RootStackScreenProps<'SignIn'>) {
+export default function SignInScreen() {
+  const { isSigningIn, signIn } = useAuth();
   const { colorMode } = useColorMode();
   const source =
     colorMode === 'dark'
@@ -25,7 +24,12 @@ export default function SignInScreen({
           source={source}
         />
       </VStack>
-      <Button onPress={() => navigation.navigate('Root')}>
+      <Button
+        disabled={isSigningIn}
+        isLoading={isSigningIn}
+        isLoadingText={i18n.t('Signing in') + '...'}
+        onPress={signIn}
+      >
         {i18n.t('Sign in')}
       </Button>
     </Screen>

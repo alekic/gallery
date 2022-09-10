@@ -8,6 +8,7 @@
     "icon": "./assets/icon-light.png",
     "userInterfaceStyle": "automatic",
     "entryPoint": "./src/App.tsx",
+    "scheme": "gallery",
     "splash": {
       "image": "./assets/splash-light.png",
       "resizeMode": "contain",

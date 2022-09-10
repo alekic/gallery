@@ -1,9 +1,35 @@
 /* globals jest */
 
 import mockAsyncStorage from '@react-native-async-storage/async-storage/jest/async-storage-mock';
+import { useState } from 'react';
 import { View as MockIcon } from 'react-native';
 import { setUpTests } from 'react-native-reanimated/lib/reanimated2/jestUtils';
 import mockSafeAreaContext from 'react-native-safe-area-context/jest/mock';
+
+jest.mock('expo-auth-session');
+jest.mock('expo-auth-session/providers/google', () => ({
+  ...jest.requireActual('expo-auth-session/providers/google'),
+  useAuthRequest: mockUseAuthRequest
+}));
+
+function mockUseAuthRequest() {
+  const [request] = useState();
+  const [response, setResponse] = useState();
+
+  return [
+    request,
+    response,
+    () => {
+      setResponse({
+        authentication: null,
+        errorCode: null,
+        params: { access_token: 'secret' },
+        type: 'success',
+        url: 'https://expo.io/'
+      });
+    }
+  ];
+}
 
 jest.mock('expo-localization', () => ({
   ...jest.requireActual('expo-localization'),
