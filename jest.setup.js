@@ -1,5 +1,6 @@
 /* globals jest */
 
+import mockAsyncStorage from '@react-native-async-storage/async-storage/jest/async-storage-mock';
 import { View as MockIcon } from 'react-native';
 import { setUpTests } from 'react-native-reanimated/lib/reanimated2/jestUtils';
 import mockSafeAreaContext from 'react-native-safe-area-context/jest/mock';
@@ -8,6 +9,20 @@ jest.mock('expo-localization', () => ({
   ...jest.requireActual('expo-localization'),
   locale: 'en-US'
 }));
+
+jest.mock('expo-secure-store', () => {
+  const items = {};
+
+  return {
+    deleteItemAsync: jest.fn(async (key) => delete items[key]),
+
+    getItemAsync: jest.fn(async (key) => (key in items ? items[key] : null)),
+
+    isAvailableAsync: jest.fn(() => true),
+
+    setItemAsync: jest.fn(async (key, value) => (items[key] = value))
+  };
+});
 
 jest.mock('native-base', () => ({
   ...jest.requireActual('native-base'),
@@ -27,6 +42,7 @@ jest.mock('react-native-reanimated', () => {
   return Reanimated;
 });
 
+jest.mock('@react-native-async-storage/async-storage', () => mockAsyncStorage);
 jest.mock('react-native-safe-area-context', () => mockSafeAreaContext);
 
 // Silence the warning: Animated: `useNativeDriver` is not supported because the native animated module is missing
