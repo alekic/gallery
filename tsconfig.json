@@ -7,12 +7,14 @@
       "@auth": ["./auth"],
       "@components": ["./components"],
       "@i18n": ["./i18n"],
+      "@media": ["./media"],
       "@navigation": ["./navigation"],
       "@navigation/*": ["./navigation/*"],
       "@screens": ["./screens"],
       "@storage": ["./storage"],
       "@test-utils": ["./utils/test-utils"],
-      "@theme": ["./theme"]
+      "@theme": ["./theme"],
+      "@utils/*": ["./utils/*"]
     }
   }
 }

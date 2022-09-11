@@ -1,10 +1,26 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { AuthContext, AuthContextProps } from '@auth';
 import { NavigationContainer } from '@react-navigation/native';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render } from '@testing-library/react-native';
 import { NativeBaseProvider } from 'native-base';
 import type { PropsWithChildren, ReactElement } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      cacheTime: Infinity,
+      retry: false
+    }
+  },
+  logger: {
+    log: () => {},
+    warn: () => {},
+    error: () => {}
+  }
+});
 
 const defaultAuthProviderProps: AuthContextProps = {
   isLoading: false,
@@ -23,14 +39,16 @@ function Providers({ authProviderProps = {}, children }: ProvidersProps) {
   return (
     <NativeBaseProvider>
       <SafeAreaProvider>
-        <AuthContext.Provider
-          value={{
-            ...defaultAuthProviderProps,
-            ...authProviderProps
-          }}
-        >
-          <NavigationContainer>{children}</NavigationContainer>
-        </AuthContext.Provider>
+        <QueryClientProvider client={queryClient}>
+          <AuthContext.Provider
+            value={{
+              ...defaultAuthProviderProps,
+              ...authProviderProps
+            }}
+          >
+            <NavigationContainer>{children}</NavigationContainer>
+          </AuthContext.Provider>
+        </QueryClientProvider>
       </SafeAreaProvider>
     </NativeBaseProvider>
   );

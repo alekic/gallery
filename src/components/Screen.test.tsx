@@ -14,3 +14,20 @@ test('renders content', () => {
 
   expect(screen.getByText(/this is awesome./i)).toBeDefined();
 });
+
+test('renders scrollable content', () => {
+  render(
+    <Screen
+      centerContent
+      safeArea={false}
+      scrollable
+    >
+      <Text>This is scrollable and awesome.</Text>
+    </Screen>,
+    {
+      wrapper: NativeBaseProvider
+    }
+  );
+
+  expect(screen.getByText(/this is scrollable and awesome./i)).toBeDefined();
+});

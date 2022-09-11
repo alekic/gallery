@@ -1,4 +1,5 @@
 import { Icon } from '@components';
+import i18n from '@i18n';
 import { DrawerParamList } from '@navigation/types';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
 import { useNavigation } from '@react-navigation/native';
@@ -14,7 +15,7 @@ export default function HeaderMenuButton({ onPress }: Props) {
   return (
     <TouchableOpacity onPress={onPress || navigation.toggleDrawer}>
       <Icon
-        accessibilityLabel="Toggle drawer"
+        accessibilityLabel={i18n.t('Toggle drawer')}
         name="menu"
         size="lg"
         style={styles.icon}
