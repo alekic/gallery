@@ -8,6 +8,7 @@
       "@components": ["./components"],
       "@i18n": ["./i18n"],
       "@media": ["./media"],
+      "@mocks/*": ["./mocks/*"],
       "@navigation": ["./navigation"],
       "@navigation/*": ["./navigation/*"],
       "@screens": ["./screens"],

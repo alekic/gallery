@@ -3,7 +3,7 @@
 import { AuthContext, AuthContextProps } from '@auth';
 import { NavigationContainer } from '@react-navigation/native';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { render } from '@testing-library/react-native';
+import { render, renderHook } from '@testing-library/react-native';
 import { NativeBaseProvider } from 'native-base';
 import type { PropsWithChildren, ReactElement } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -35,23 +35,52 @@ type ProvidersProps = PropsWithChildren<{
   authProviderProps?: Partial<AuthContextProps>;
 }>;
 
+function BaseProviders({ authProviderProps = {}, children }: ProvidersProps) {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <AuthContext.Provider
+        value={{
+          ...defaultAuthProviderProps,
+          ...authProviderProps
+        }}
+      >
+        {children}
+      </AuthContext.Provider>
+    </QueryClientProvider>
+  );
+}
+
 function Providers({ authProviderProps = {}, children }: ProvidersProps) {
   return (
     <NativeBaseProvider>
       <SafeAreaProvider>
-        <QueryClientProvider client={queryClient}>
-          <AuthContext.Provider
-            value={{
-              ...defaultAuthProviderProps,
-              ...authProviderProps
-            }}
-          >
-            <NavigationContainer>{children}</NavigationContainer>
-          </AuthContext.Provider>
-        </QueryClientProvider>
+        <BaseProviders authProviderProps={authProviderProps}>
+          <NavigationContainer>{children}</NavigationContainer>
+        </BaseProviders>
       </SafeAreaProvider>
     </NativeBaseProvider>
   );
+}
+
+type RenderHookOptions<Props> = Props extends object | string | number | boolean
+  ? { initialProps: Props; wrapper?: React.ComponentType<any> }
+  : { initialProps?: never; wrapper?: React.ComponentType<any> } | undefined;
+
+type CustomRenderHookOptions<Props> = RenderHookOptions<Props> &
+  Partial<ProvidersProps>;
+
+function customRenderHook<Result, Props>(
+  renderCallback: (props: Props) => Result,
+  options?: CustomRenderHookOptions<Props>
+) {
+  return renderHook(renderCallback, {
+    wrapper: ({ children }) => (
+      <BaseProviders authProviderProps={options?.authProviderProps}>
+        {children}
+      </BaseProviders>
+    ),
+    ...options
+  } as RenderHookOptions<Props>);
 }
 
 type RenderOptions = {
@@ -73,4 +102,4 @@ function customRender(component: ReactElement, options?: CustomRenderOptions) {
 }
 
 export * from '@testing-library/react-native';
-export { customRender as render };
+export { customRender as render, customRenderHook as renderHook };

@@ -1,4 +1,10 @@
-import { fireEvent, render, screen, within } from '@test-utils';
+import {
+  fireEvent,
+  render,
+  screen,
+  waitForElementToBeRemoved,
+  within
+} from '@test-utils';
 import { Linking } from 'react-native';
 import DrawerNavigator from './DrawerNavigator';
 
@@ -7,10 +13,12 @@ const signOut = jest.fn();
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let drawer: any;
 
-beforeEach(() => {
+beforeEach(async () => {
   render(<DrawerNavigator />, {
     authProviderProps: { signOut }
   });
+
+  await waitForElementToBeRemoved(() => screen.getByLabelText(/loading/i));
 
   drawer = within(screen.getByTestId('drawer-content'));
 });

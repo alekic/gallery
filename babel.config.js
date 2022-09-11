@@ -11,6 +11,7 @@ module.exports = function (api) {
             '^@components(.*)$': './src/components\\1',
             '^@i18n(.*)$': './src/i18n\\1',
             '^@media(.*)$': './src/media\\1',
+            '^@mocks(.*)$': './src/mocks\\1',
             '^@navigation(.*)$': './src/navigation\\1',
             '^@screens(.*)$': './src/screens\\1',
             '^@storage(.*)$': './src/storage\\1',
